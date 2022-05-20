@@ -187,7 +187,7 @@ class BasicEncoder(nn.Module):
             x = self.dropout(x)
 
         if is_list:
-            x = torch.split(x, [batch_dim, batch_dim], dim=0)
+            x = torch.split(x, [batch_dim, batch_dim], dim=0) #Converts from a torch with batch of 2 back to array of batch 1 tensors
 
         return x
 

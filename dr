@@ -1,0 +1,8 @@
+docker run --ipc=host --privileged --gpus all -it --rm --cap-add=CAP_SYS_ADMIN \
+    -v "$(pwd):/app" \
+    -v "/store:/store" \
+    -v "/store/Datasets/flow/SceneFlow:/store/Datasets/flow/SceneFlow" \
+    -v /etc/localtime:/etc/localtime:ro \
+    -p 3000:3000 \
+    -p 6006:6006 \
+    raft:latest

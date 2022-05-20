@@ -89,14 +89,14 @@ class RAFT(nn.Module):
         image1 = 2 * (image1 / 255.0) - 1.0
         image2 = 2 * (image2 / 255.0) - 1.0
 
-        image1 = image1.contiguous()
+        image1 = image1.contiguous() # Returns a contiguous in memory tensor containing the same data as self tensor
         image2 = image2.contiguous()
 
         hdim = self.hidden_dim
         cdim = self.context_dim
 
         # run the feature network
-        with autocast(enabled=self.args.mixed_precision):
+        with autocast(enabled=self.args.mixed_precision): # In these autocast, ops run in an op-specific dtype chosen by autocast to improve performance while maintaining accuracy. See the Autocast Op Reference for details.
             fmap1, fmap2 = self.fnet([image1, image2])        
         
         fmap1 = fmap1.float()
